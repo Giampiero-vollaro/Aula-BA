@@ -96,8 +96,9 @@ public class Esercizio2 {
                 }
             } else {
                 // richiamo metodo1
-                richiama.metodo1(x);
                 
+                richiama.metodo1(x);
+                richiama.metodo2(x);
                 
 
                 
