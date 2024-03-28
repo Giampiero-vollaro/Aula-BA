@@ -2,34 +2,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Esercizio2 {
+   
+    //creo un metodo per far stampare nell'ArrayList i valori per fare le operazioni
+    public metodo1(ArrayList x) {
+        for (int k = x.size(); k < 5; k++) {
 
-    // creiamo un array e i metodi
-
-    // richiama1.metodo1();
-    // richiama2.metodo2();
-    public void metodo1() {
-        while (k) {
-
-            System.out.println("Seleziona una variabile");
-            String risp3 = var1.nextLine();
-            if (risp3.equalsIgnoreCase("ESC")) {
-                System.out.println("quale variabile vuoi?");
-              int val1 = var2.nextInt();
-              x.add(val1);
-              System.out.println("quale variabile vuoi?");
-              int val2 = var2.nextInt();
-              x.add(val2);
+            System.out.println("Che variabile vuoi aggiungere");
+            x.add(var2.nextInt());
+            }
+            System.out.println(x);
             }
 
-            else {
-                k = false;
-            }
-
-        }
-    }
-
-    public void metodo2() {
+            //metodo per fare operazioni sui valori nell'Array
+    public void metodo2(ArrayList x) {
         System.out.println("che gle famo con sti addendi?");
+
         int operazione = var2.nextInt();
         while (j) {
 
@@ -41,7 +28,7 @@ public class Esercizio2 {
                     System.out.println("quali variabili vuoi usare?");
                     String add2 = var1.nextLine();
 
-                    System.err.println(x.size(add1) + x.size(add2));
+                    System.out.println(x.size(add1) + x.size(add2));
                     System.out.println("ok orgasmo da codice che gira done");
 
                     break;
@@ -91,7 +78,6 @@ public class Esercizio2 {
         Scanner var2 = new Scanner(System.in);
         int i = 1;
         boolean j = true;
-        boolean k = true;
         Esercizio2 richiama = new Esercizio2();
 
         // apro il ciclo di introduzione e richiamo il mio array
@@ -110,11 +96,11 @@ public class Esercizio2 {
                 }
             } else {
                 // richiamo metodo1
-                richiama.metodo1();
+                richiama.metodo1(x);
+                
+                
 
-                System.out.println(x);
-
-                richiama.metodo2();
+                
             }
 
         }
