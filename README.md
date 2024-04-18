@@ -7,8 +7,8 @@ public class AleCi {
         String risposta = var1.nextLine();
         
         // Menu' divertenti
-        Menu menu1 = new Menu("o' panino co salame e mortadella e porporina della nonna", "Frat'm Gilberto", 79);
-        Menu menu2 = new Menu("il mc flurry al pistacchio perchè comunque è nuovo", "il signore del mc", 100);
+        Menu menu1 = new Menu("o' panino co o'salam e a murtadell e pur e purpettell ra nonn", "Frat'm Gilberto", 79);
+        Menu menu2 = new Menu("il mc flurry al pistacchio perchè comunque è nuovo e lo stiamo sponsorizzando", "Sante", 100);
         
         // Ordinazione
         Ordinazione ordinazione = new Ordinazione();
