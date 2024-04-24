@@ -1,0 +1,93 @@
+import java.util.Scanner;
+
+public class Banca {
+
+public static void main(String[] args) {
+    
+}
+    
+}
+
+class Contobancario{
+    Scanner scanner = new Scanner(System.in);
+
+    //variabili
+    private String titolare;
+    private double saldo;
+    private double newSaldo;
+
+    //metodi Getter
+    public String getTitolare() {
+        return titolare;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+   
+    public double getNewSaldo() {
+        return newSaldo;
+    }
+
+//costruttore due elementi
+public Contobancario(String titolare, double saldo){
+    this.titolare = titolare;
+    this.saldo = saldo;
+}
+
+//costruttore tre elementi
+    public Contobancario(String titolare, double saldo, double newSaldo){
+        this.titolare = titolare;
+        this.saldo = saldo;
+        this.newSaldo= newSaldo;
+    }
+
+        double importo;
+      //metodo per depositare denaro...il saldo deve aumentare  
+        public void deposita(double importo){
+            System.out.println("QUale cifra desidera depositare?");
+            this.importo = scanner.nextInt();
+            System.out.println(saldo+=importo); 
+            newSaldo = saldo;
+        }
+        //metodo per ritirare denaro, il massimo è la disponibilità sul conto corrente
+            public void preleva(double importo) {
+                if (importo <= saldo) {
+                    saldo -= importo;
+                    newSaldo = saldo;
+                } else {
+                    System.out.println("Mi spiace gentile cliente il suo credito è insufficiente.");
+                }
+            }
+
+ }
+
+ class Contorisparmio extends Contobancario {
+    // Variabili
+    private double tassointeresse;
+
+    //generiamo Getter and Setter
+    public double gettassointeresse() {
+        return tassointeresse;
+    }
+
+    public void settassointeresse(double tassointeresse) {
+        this.tassointeresse = tassointeresse;
+    }
+
+    // Costruttore
+    public Contorisparmio(String titolare, double saldo, double newSaldo, double tassointeresse) {
+        
+        super(titolare, saldo, newSaldo);
+        this.tassointeresse = tassointeresse;
+    }
+
+    // Metodo che aggiunge al saldo il tasso di interesse
+    public void aggiungiInteresse() {
+
+        double interesse = getSaldo() * tassointeresse;
+        deposita(interesse);
+    }
+
+ 
+}
