@@ -1,12 +1,37 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Banca {
+class Banca {
+//variabili
+    private ArrayList<Contobancario> conti;
 
-public static void main(String[] args) {
+    // Costruttore
+    public Banca() {
+        conti = new ArrayList<>();
+    }
+    public void aggiungiConto(Contobancario conto) {
+        conti.add(conto);
+    }
+
+    // Metodo che calcola il saldo totale di tutti i conti all'interno dell'Arrylist
+    public double getSaldoTot() {
+        double saldoTotale = 0;
+        for (Contobancario conto : conti) {
+            saldoTotale += conto.getSaldo();
+        }
+        return saldoTotale;
+    }
+
+    // Metodo che stampa il conto e il rispettivo titolare per ogni conto nell'Array
+    public void stampaSaldi() {
+        for (Contobancario conto : conti) {
+            System.out.println("Titolare: " + conto.getTitolare() + "  Saldo: " + conto.getSaldo());
+        }
+    }
     
 }
     
-}
+
 
 class Contobancario{
     Scanner scanner = new Scanner(System.in);
