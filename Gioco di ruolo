@@ -1,0 +1,201 @@
+import java.util.Random;
+
+public class Game {
+    
+}
+
+ class Randomizzatore {
+ 
+        int max; 
+        
+        // Genera un numero casuale tra 1 e max
+        int dado = getdado(max);
+        
+    /**
+     * Genera un numero casuale compreso tra 1 e max (incluso).
+     * @param max Il numero massimo
+     * @return Un numero casuale compreso tra 1 e max (incluso)
+     */
+    public int getdado(int max) {
+        // Crea un'istanza della classe Random
+        Random random = new Random();
+        
+        // Genera un numero casuale tra 1 e max (incluso)
+        int dado = random.nextInt(max) + 1;
+        
+        return dado;
+    }
+}
+
+
+class Personaggio{
+     int vita;
+     int attacco;
+     int attaccoDistanza;
+     int velocità;
+     int livello;
+
+     public void subisciDanno(int danno) {
+        // Diminuisce la vita del personaggio in base al danno ricevuto
+        vita -= danno;
+        
+        // Se arriva a zero o meno il personaggio muore, dunque portiamo tutto a zero
+        if (vita < 0) {
+            vita = 0;
+        }
+    }
+
+    public int getVita() {
+        return vita;
+    }
+    public int getVitaSpeciale() {
+        return vitaSpeciale;
+    }
+    public int getAttacco() {
+        return attacco;
+    }
+    public int getAttaccoDistanza() {
+        return attaccoDistanza;
+    }
+    public int getVelocità() {
+        return velocità;
+    }
+    public int getLivello() {
+        return livello;
+    }
+
+    public Personaggio(int vita, int attacco, int attaccoDistanza, int velocità, int livello){
+        this.vita = vita;
+        this.attacco = attacco;
+        this.attaccoDistanza = attaccoDistanza;
+        this.velocità = velocità;
+        this.livello = livello;
+    }
+    protected void attaccoFisico(){} 
+    protected void potere(){}
+    protected void attaccoDistanza(){}
+}
+
+class Cavaliere extends Personaggio{
+
+    
+   public Cavaliere(int vita, int attacco, int attaccoDistanza, int velocità, int livello) {
+        super(vita, attacco, attaccoDistanza, velocità, livello);
+    }
+   protected void attaccoFisico(Nemico target){
+    int danno = attacco;
+    target.subisciAttaccoFisico(danno);
+    System.out.println("Il fendente splendente del cavaliere ha inflitto " + danno + " danni all'avversario");
+   } 
+   protected void potere(int vita, int attacco, int attaccoDistanza){
+    this.vita = ++vita;
+    this.attacco = ++attacco;
+    this.attaccoDistanza = ++attaccoDistanza;
+
+   }
+   protected void attaccoDistanza(Nemico target){
+
+    int dannoDistanza = attaccoDistanza;
+    target.subisciAttaccoSpeciale(dannoDistanza);
+    System.out.println("Il cavaliere scocca la sua freccia infuocata colpendo in pieno l'avversario che subisce  " + dannoDistanza + " danni");
+    
+   }
+
+}
+
+class Bandito extends Personaggio{
+
+    public Bandito(int vita, int attacco, int attaccoDistanza, int velocità, int livello) {
+        super(vita, attacco, attaccoDistanza, velocità, livello);
+    }
+    protected void attaccoFisico(Nemico target){
+        int danno = attacco;
+        target.subisciAttaccoFisico(danno);
+        System.out.println("Scatto fulmineo del bandito infligge " + danno + " danni all'avversario");
+       } 
+       protected void potere(){
+        
+    
+       }
+       protected void attaccoDistanza(Nemico target){
+    
+        int dannoDistanza = attaccoDistanza;
+        target.subisciAttaccoSpeciale(dannoDistanza);
+        System.out.println("Il bandito è un cecchino infallibile, con la sua calibro45 infligge   " + dannoDistanza + " danni all'avversario");
+        
+       }
+
+
+}
+
+class Incantatore extends Personaggio{
+
+    public Incantatore(int vita, int attacco, int attaccoDistanza, int velocità, int livello) {
+        super(vita, attacco, attaccoDistanza, velocità, livello);
+    }
+    protected void attaccoFisico(Nemico target){
+        int danno = attacco;
+        target.subisciAttaccoFisico(danno);
+        System.out.println("L'incantatore colpisce con suo bastone rotante l'avversario infliggendo " + danno + " danni all'avversario");
+       } 
+       protected void potere(int vita, int attacco, int attaccoDistanza){
+        this.vita = ++vita;
+        this.attacco = ++attacco;
+        this.attaccoDistanza = ++attaccoDistanza;
+    
+       }
+       protected void attaccoDistanza(Nemico target){
+    
+        int dannoDistanza = attaccoDistanza;
+        target.subisciAttaccoSpeciale(dannoDistanza);
+        System.out.println("I fulmini evocati dall'incantatore infliggono" + dannoDistanza + " danni all'avversario");
+        
+       }
+  
+
+}
+
+class Nemico{
+     int vita;
+     int vitaSpeciale;
+     int attacco;
+     int velocità;
+     int livello;
+    public Nemico(int vita, int vitaSpeciale, int attacco, int velocità, int nome){
+        this.vita = vita;
+        this.vitaSpeciale = vitaSpeciale;
+        this.attacco = attacco;
+        this.velocità = velocità;
+        this.nome = nome;
+    }
+
+    public void attacco(Personaggio target){
+        int danno = attacco;
+
+        target.subisciDanno(danno);
+
+        System.out.println(Nemico.getnome + "ha inflitto " + danno + "punti di danno a" + target);
+
+    }
+
+    public void subisciAttaccoFisico(int danno) {
+        // Diminuisce la vita del personaggio in base al danno ricevuto
+        vita -= danno;
+        
+        // Se arriva a zero o meno il personaggio muore, dunque portiamo tutto a zero
+        if (vita < 0) {
+            vita = 0;
+        }
+    }
+
+    public void subisciAttaccoSpeciale(int dannoDistanza) {
+        // Diminuisce la vita del personaggio in base al danno ricevuto
+        vitaSpeciale -= dannoDistanza;
+        
+        // Se arriva a zero o meno il personaggio muore, dunque portiamo tutto a zero
+        if (vitaSpeciale < 0) {
+            vitaSpeciale = 0;
+        }
+    }
+
+}
